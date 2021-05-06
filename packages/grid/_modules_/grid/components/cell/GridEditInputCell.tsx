@@ -27,12 +27,12 @@ export function GridEditInputCell(props: GridCellParams & InputBaseProps) {
     (event) => {
       const newValue = event.target.value;
       const editProps = {
-        value: colDef.type === 'date' || colDef.type === 'dateTime' ? new Date(newValue) : newValue,
+        value: newValue,
       };
       setValueState(newValue);
       api.publishEvent(GRID_CELL_EDIT_PROPS_CHANGE, { id, field, props: editProps }, event);
     },
-    [api, colDef.type, field, id],
+    [api, field, id],
   );
 
   const inputType = mapColDefTypeToInputType(colDef.type);
